@@ -1,0 +1,15 @@
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Kubectl
+        uses: azure/setup-kubectl@v3
+      - name: Create GitHub Token Secret
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+        run: |
+          envsubst < k8s/github-token-secret.yaml | kubectl apply -f -
+      - name: Deploy Application
+        run: |
+          kubectl apply -f k8s
