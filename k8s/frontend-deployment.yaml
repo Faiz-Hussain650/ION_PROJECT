@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: your-dockerhub-username/hello-frontend:latest
+        image: faizhussain/hello-frontend:latest
         ports:
         - containerPort: 5000
         env:
